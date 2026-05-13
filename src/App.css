@@ -1,9 +1,27 @@
+/* 전체 기본 스타일 */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #1e1e1e;
+}
+
+body {
+  font-family: monospace;
+  color: #d4d4d4;
+}
+
 /* 전체 터미널 영역 */
 .terminal {
   background-color: #1e1e1e;   /* VSCode 터미널 배경 */
   color: #d4d4d4;              /* 기본 텍스트 색 */
   font-family: monospace;      /* 터미널 느낌 */
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -11,20 +29,31 @@
 /* 상단 탭 영역 */
 .tabs {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #2d2d2d;
-  padding: 5px 10px;
+  padding: 10px 14px;
   border-bottom: 1px solid #3c3c3c;
 }
 
-.tabs a {
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9cdcfe;
+  font-weight: 700;
+}
+
+.tab-links a {
   margin-right: 15px;
-  color: #9cdcfe;              /* VSCode 파란색 */
+  color: #9cdcfe;
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 4px;
 }
 
-.tabs a:hover {
+.tab-links a.active,
+.tab-links a:hover {
   background-color: #3c3c3c;
 }
 
@@ -33,6 +62,26 @@
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+}
+
+.error {
+  color: #f48771;
+  margin-bottom: 12px;
+}
+
+.skill-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.skill-form input,
+.skill-form button,
+.input-area input {
+  min-height: 38px;
+  font-family: monospace;
+  font-size: 14px;
 }
 
 /* 입력 영역 */
@@ -65,4 +114,14 @@
   color: #d4d4d4;
   padding: 5px 10px;
   font-family: monospace;
+}
+
+.input-area input:focus,
+.skill-form input:focus {
+  outline: 1px solid #9cdcfe;
+}
+
+.input-area input::placeholder,
+.skill-form input::placeholder {
+  color: #7f848e;
 }

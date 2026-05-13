@@ -6,47 +6,78 @@ import { collection, getDocs, addDoc } from "firebase/firestore";
 function Skills() {
   const [skills, setSkills] = useState([]);
   const [newSkill, setNewSkill] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Firestore에서 스킬 목록 불러오기
-  useEffect(() => {
-    const fetchSkills = async () => {
+  const fetchSkills = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
       const querySnapshot = await getDocs(collection(db, "skills"));
       const skillsData = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       }));
       setSkills(skillsData);
-    };
+    } catch (err) {
+      console.error(err);
+      setError("스킬을 불러오는 중 오류가 발생했습니다.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchSkills();
   }, []);
 
-  // Firestore에 새 스킬 추가하기
   const addSkill = async () => {
-    if (newSkill.trim() === "") return;
-    await addDoc(collection(db, "skills"), { name: newSkill });
-    setNewSkill("");
-    // 다시 불러오기
-    const querySnapshot = await getDocs(collection(db, "skills"));
-    setSkills(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    const trimmedSkill = newSkill.trim();
+    if (trimmedSkill === "" || isSubmitting) return;
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      await addDoc(collection(db, "skills"), { name: trimmedSkill });
+      setNewSkill("");
+      await fetchSkills();
+    } catch (err) {
+      console.error(err);
+      setError("스킬 추가 중 오류가 발생했습니다.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div>
       <h2>My Skills</h2>
-      <ul>
-        {skills.map(skill => (
-          <li key={skill.id}>{skill.name}</li>
-        ))}
-      </ul>
+      {error && <p className="error">{error}</p>}
+      {loading ? (
+        <p>스킬을 불러오는 중입니다...</p>
+      ) : (
+        <ul>
+          {skills.map(skill => (
+            <li key={skill.id}>{skill.name}</li>
+          ))}
+        </ul>
+      )}
 
-      <input
-        type="text"
-        value={newSkill}
-        onChange={(e) => setNewSkill(e.target.value)}
-        placeholder="Add a new skill"
-      />
-      <button onClick={addSkill}>Add Skill</button>
+      <div className="skill-form">
+        <input
+          type="text"
+          value={newSkill}
+          onChange={(e) => setNewSkill(e.target.value)}
+          placeholder="Add a new skill"
+          disabled={isSubmitting}
+        />
+        <button onClick={addSkill} disabled={isSubmitting || newSkill.trim() === ""}>
+          {isSubmitting ? "추가 중..." : "Add Skill"}
+        </button>
+      </div>
     </div>
   );
 }
