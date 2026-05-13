@@ -1,0 +1,15 @@
+/* src/styles.css */
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background-color: #0f0; /* 초록색 터미널 커서 */
+  margin-left: 5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
