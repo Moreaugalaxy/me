@@ -1,0 +1,68 @@
+/* 전체 터미널 영역 */
+.terminal {
+  background-color: #1e1e1e;   /* VSCode 터미널 배경 */
+  color: #d4d4d4;              /* 기본 텍스트 색 */
+  font-family: monospace;      /* 터미널 느낌 */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 탭 영역 */
+.tabs {
+  display: flex;
+  background-color: #2d2d2d;
+  padding: 5px 10px;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+.tabs a {
+  margin-right: 15px;
+  color: #9cdcfe;              /* VSCode 파란색 */
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.tabs a:hover {
+  background-color: #3c3c3c;
+}
+
+/* 콘텐츠 영역 */
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* 입력 영역 */
+.input-area {
+  display: flex;
+  align-items: center;
+  background-color: #2d2d2d;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+}
+
+.input-area button {
+  background: #3c3c3c;
+  border: none;
+  color: #d4d4d4;
+  margin-right: 8px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-area button:hover {
+  background: #505050;
+}
+
+.input-area input {
+  flex: 1;
+  background: #1e1e1e;
+  border: none;
+  color: #d4d4d4;
+  padding: 5px 10px;
+  font-family: monospace;
+}
