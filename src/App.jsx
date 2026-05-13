@@ -1,9 +1,9 @@
 // src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Portfolio from "./Pages/Portfolio";
-import Skills from "./Pages/Skills";
-import Story from "./Pages/Story";
+import Portfolio from "./Pages/Portfolio.jsx";
+import Skills from "./Pages/Skills.jsx";
+import Story from "./Pages/Story.jsx";
 import "./styles.css"; // 커서 애니메이션 CSS
 
 function App() {
