@@ -1,0 +1,123 @@
+.terminal-shell {
+  display: grid;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.terminal-frame {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
+.terminal-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 26px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminal-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.terminal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link.active {
+  color: var(--accent);
+  background: rgba(82, 216, 255, 0.12);
+}
+
+.terminal-content {
+  flex: 1;
+  padding: 28px 26px;
+  overflow-y: auto;
+  color: var(--text-primary);
+}
+
+.terminal-input-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(5, 7, 11, 0.88);
+}
+
+.terminal-input-area button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.terminal-input-area button:hover {
+  background: rgba(82, 216, 255, 0.12);
+}
+
+.terminal-input-area input {
+  flex: 1;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: rgba(10, 14, 20, 0.72);
+  color: var(--text-primary);
+  padding: 0 16px;
+  font-family: var(--font-mono);
+}
+
+.terminal-input-area input::placeholder {
+  color: var(--text-muted);
+}
+
+.error {
+  color: #f48771;
+  margin-bottom: 12px;
+}
+
+.skill-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.skill-form input,
+.skill-form button {
+  min-height: 42px;
+  font-family: var(--font-mono);
+}

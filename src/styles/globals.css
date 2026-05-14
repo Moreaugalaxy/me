@@ -1,0 +1,24 @@
+@import "./layout.css";
+@import "./typography.css";
+@import "./animations.css";
+@import "./effects.css";
+
+:root {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at top, rgba(82, 216, 255, 0.08), transparent 25%),
+    linear-gradient(180deg, #06080f 0%, #05060b 100%);
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+}
+
+body {
+  overflow-x: hidden;
+}

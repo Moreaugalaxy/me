@@ -1,0 +1,32 @@
+:where(h1, h2, h3, h4, h5, h6, p, ul, li) {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: var(--font-ui);
+}
+
+h2 {
+  font-size: clamp(1.65rem, 1.5vw + 1rem, 2.25rem);
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+
+p,
+ul {
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}

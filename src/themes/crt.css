@@ -1,0 +1,9 @@
+[data-theme="crt"] {
+  --bg-primary: #05070b;
+  --bg-panel: rgba(10, 14, 20, 0.78);
+  --text-primary: #d7dde7;
+  --text-muted: #7e8797;
+  --accent: #52d8ff;
+  --border: rgba(82, 216, 255, 0.12);
+  --surface: rgba(14, 20, 30, 0.74);
+}

@@ -1,6 +1,5 @@
-// src/Pages/Skills.js
 import React, { useEffect, useState } from "react";
-import { db } from "../firebase"; // firebase.js에서 가져오기
+import { db } from "../services/firebase";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 
 function Skills() {
@@ -16,9 +15,9 @@ function Skills() {
 
     try {
       const querySnapshot = await getDocs(collection(db, "skills"));
-      const skillsData = querySnapshot.docs.map(doc => ({
+      const skillsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
-        ...doc.data()
+        ...doc.data(),
       }));
       setSkills(skillsData);
     } catch (err) {
@@ -60,7 +59,7 @@ function Skills() {
         <p>스킬을 불러오는 중입니다...</p>
       ) : (
         <ul>
-          {skills.map(skill => (
+          {skills.map((skill) => (
             <li key={skill.id}>{skill.name}</li>
           ))}
         </ul>
