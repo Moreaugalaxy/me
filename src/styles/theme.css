@@ -1,0 +1,541 @@
+/* =========================================================
+   theme.css
+
+   Interactive Terminal OS
+   Theme System
+
+   ---------------------------------------------------------
+   이 파일은 프로젝트의
+   "분위기 시스템"
+
+   자체를 정의한다.
+
+   globals.css 가:
+   기술적 기본 토대라면,
+
+   theme.css 는:
+   감정 / 분위기 / 몰입감
+
+   을 담당한다.
+
+   ---------------------------------------------------------
+
+   핵심 컨셉:
+
+   "조용한 미래형 디지털 관측 시스템"
+
+   ---------------------------------------------------------
+
+   중요한 방향성:
+
+   ❌ gamer RGB
+   ❌ matrix clone
+   ❌ 과한 cyberpunk
+   ❌ neon overload
+   ❌ aggressive sci-fi
+
+   ---------------------------------------------------------
+
+   목표:
+
+   - cinematic
+   - restrained
+   - ambient
+   - archival
+   - atmospheric
+
+   ---------------------------------------------------------
+
+   즉:
+
+   "미래 기술"보다
+
+   "기억을 보관하는 시스템"
+
+   같은 감성을 우선한다.
+
+========================================================= */
+
+
+/* =========================================================
+   MAIN AMBIENT BACKGROUND
+   ---------------------------------------------------------
+   사이트 전체의 기본 분위기.
+
+   radial gradient 를 사용하는 이유:
+   단순 단색보다 훨씬 cinematic 하다.
+
+   중앙에 아주 약한 blue glow 를 넣어
+   cold workstation 분위기 생성.
+========================================================= */
+.theme-background {
+  background:
+    radial-gradient(
+      circle at top,
+
+      rgba(70, 110, 180, 0.08),
+
+      transparent 45%
+    ),
+
+    linear-gradient(
+      to bottom,
+
+      #070b12 0%,
+
+      #05070b 45%,
+
+      #040508 100%
+    );
+}
+
+
+/* =========================================================
+   SYSTEM NOISE OVERLAY
+   ---------------------------------------------------------
+   화면의 지나친 디지털 깨끗함 제거.
+
+   핵심:
+   noise 가 보이면 안 된다.
+
+   "존재감"이 아니라
+   "질감" 수준이어야 한다.
+========================================================= */
+.theme-noise {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.025;
+
+  mix-blend-mode: screen;
+
+  background-image:
+    url("/images/overlays/noise.png");
+
+  background-repeat: repeat;
+}
+
+
+/* =========================================================
+   CRT SCANLINE
+   ---------------------------------------------------------
+   subtle CRT horizontal scanline.
+
+   repeating-linear-gradient 사용 이유:
+   매우 가볍고 자연스럽다.
+
+   opacity 매우 중요.
+========================================================= */
+.theme-scanline {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.04;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+
+      transparent 0px,
+
+      rgba(255,255,255,0.03) 1px,
+
+      transparent 2px
+    );
+}
+
+
+/* =========================================================
+   SCREEN VIGNETTE
+   ---------------------------------------------------------
+   화면 가장자리 darkening.
+
+   목적:
+   중앙 몰입감 강화.
+
+   실제 CRT monitor 같은
+   집중도 생성.
+========================================================= */
+.theme-vignette {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+
+      transparent 40%,
+
+      rgba(0,0,0,0.22) 100%
+    );
+}
+
+
+/* =========================================================
+   GLASS SURFACE
+   ---------------------------------------------------------
+   메인 glass panel 스타일.
+
+   핵심:
+   iOS glass 처럼 밝고 flashy 하면 안 된다.
+
+   방향:
+   dark cinematic workstation.
+========================================================= */
+.theme-glass {
+  background:
+    rgba(10, 14, 22, 0.58);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  box-shadow:
+    0 0 60px rgba(0,0,0,0.45);
+}
+
+
+/* =========================================================
+   GLASS INNER HIGHLIGHT
+   ---------------------------------------------------------
+   유리 상단 reflection.
+
+   목적:
+   flat 느낌 제거.
+========================================================= */
+.theme-glass-highlight {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to bottom,
+
+      rgba(255,255,255,0.07),
+
+      transparent 18%
+    );
+}
+
+
+/* =========================================================
+   TERMINAL TYPOGRAPHY
+   ---------------------------------------------------------
+   terminal 분위기 typography.
+
+   너무 굵은 폰트 금지.
+
+   terminal 은:
+   precision + silence 느낌이 중요.
+========================================================= */
+.theme-terminal-text {
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    monospace;
+
+  letter-spacing:
+    0.02em;
+}
+
+
+/* =========================================================
+   SYSTEM LABEL
+   ---------------------------------------------------------
+   작은 시스템 상태 텍스트.
+
+   uppercase + tracking 사용 이유:
+   workstation interface 느낌 강화.
+========================================================= */
+.theme-system-label {
+  font-size: 11px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.28em;
+
+  color: #7f8794;
+}
+
+
+/* =========================================================
+   CYAN ACCENT
+   ---------------------------------------------------------
+   시스템 active 상태용 accent.
+
+   neon cyan 이 아니라:
+   soft cold blue 느낌 유지.
+========================================================= */
+.theme-accent {
+  color:
+    rgba(125, 211, 252, 0.82);
+}
+
+
+/* =========================================================
+   SOFT TEXT GLOW
+   ---------------------------------------------------------
+   CRT phosphor 느낌.
+
+   매우 약하게 유지.
+========================================================= */
+.theme-text-glow {
+  text-shadow:
+    0 0 8px rgba(125, 211, 252, 0.12);
+}
+
+
+/* =========================================================
+   TERMINAL PANEL
+   ---------------------------------------------------------
+   terminal content 영역.
+
+   목적:
+   오래된 workstation 내부 공간 느낌 생성.
+========================================================= */
+.theme-terminal-panel {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  background:
+    rgba(8, 12, 18, 0.62);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
+}
+
+
+/* =========================================================
+   TERMINAL PANEL DEPTH
+   ---------------------------------------------------------
+   내부 recessed depth 생성.
+========================================================= */
+.theme-terminal-panel::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+
+/* =========================================================
+   SYSTEM DIVIDER
+   ---------------------------------------------------------
+   subtle divider line.
+
+   너무 선명한 border 금지.
+========================================================= */
+.theme-divider {
+  border-color:
+    rgba(255,255,255,0.08);
+}
+
+
+/* =========================================================
+   AMBIENT GLOW
+   ---------------------------------------------------------
+   아주 약한 cinematic glow.
+
+   핵심:
+   glow 는 "효과"가 아니라
+   "공기감" 수준이어야 한다.
+========================================================= */
+.theme-ambient-glow {
+  box-shadow:
+    0 0 120px rgba(120,170,255,0.08);
+}
+
+
+/* =========================================================
+   BOOT LOG STYLE
+   ---------------------------------------------------------
+   boot terminal log typography.
+========================================================= */
+.theme-boot-log {
+  font-family:
+    "JetBrains Mono",
+    monospace;
+
+  font-size: 12px;
+
+  line-height: 1.8;
+
+  color:
+    #8e98aa;
+}
+
+
+/* =========================================================
+   SYSTEM CURSOR
+   ---------------------------------------------------------
+   terminal cursor.
+
+   너무 빠른 blink 금지.
+========================================================= */
+.theme-cursor {
+  width: 8px;
+  height: 18px;
+
+  background:
+    rgba(125,211,252,0.65);
+
+  animation:
+    terminal-cursor 1.4s ease infinite;
+}
+
+
+/* =========================================================
+   CURSOR ANIMATION
+========================================================= */
+@keyframes terminal-cursor {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0.25;
+  }
+}
+
+
+/* =========================================================
+   SCREEN TRANSITION
+   ---------------------------------------------------------
+   전체 screen 전환용 animation.
+
+   중요한 점:
+   dramatic 하면 안 된다.
+
+   "부드럽게 존재가 나타나는 느낌"
+========================================================= */
+@keyframes screen-fade {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* =========================================================
+   SCREEN ENTER CLASS
+========================================================= */
+.theme-screen-enter {
+  animation:
+    screen-fade 900ms ease forwards;
+}
+
+
+/* =========================================================
+   SOFT FLOAT
+   ---------------------------------------------------------
+   아주 미세한 ambient floating.
+
+   aggressive motion 금지.
+========================================================= */
+@keyframes soft-float {
+  0%,
+  100% {
+    transform:
+      translateY(0px);
+  }
+
+  50% {
+    transform:
+      translateY(-4px);
+  }
+}
+
+
+/* =========================================================
+   FLOAT CLASS
+========================================================= */
+.theme-soft-float {
+  animation:
+    soft-float 8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   MOBILE PERFORMANCE MODE
+   ---------------------------------------------------------
+   모바일에서는:
+
+   - blur 감소
+   - shadow 감소
+   - glow 감소
+
+   를 적용한다.
+
+   이유:
+   모바일 GPU 부담 감소.
+========================================================= */
+@media (max-width: 768px) {
+
+  .theme-glass {
+    backdrop-filter:
+      blur(10px);
+
+    -webkit-backdrop-filter:
+      blur(10px);
+  }
+
+  .theme-noise {
+    opacity: 0.018;
+  }
+
+  .theme-scanline {
+    opacity: 0.025;
+  }
+
+  .theme-ambient-glow {
+    box-shadow:
+      0 0 60px rgba(120,170,255,0.05);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION SUPPORT
+   ---------------------------------------------------------
+   접근성 대응.
+========================================================= */
+@media (prefers-reduced-motion: reduce) {
+
+  .theme-screen-enter,
+  .theme-soft-float,
+  .theme-cursor {
+    animation: none !important;
+  }
+}
