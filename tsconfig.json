@@ -1,0 +1,121 @@
+{
+  "compilerOptions": {
+    /*
+      최신 JavaScript 기능 사용.
+    */
+    "target": "ES2017",
+
+    /*
+      브라우저 DOM API 사용.
+    */
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+
+    /*
+      JavaScript 파일 허용.
+    */
+    "allowJs": true,
+
+    /*
+      라이브러리 타입 검사 생략.
+    */
+    "skipLibCheck": true,
+
+    /*
+      strict mode 활성화.
+    */
+    "strict": true,
+
+    /*
+      파일 emit 비활성화.
+    */
+    "noEmit": true,
+
+    /*
+      ES Module 사용.
+    */
+    "module": "esnext",
+
+    /*
+      Next.js 권장 module 해석 방식.
+    */
+    "moduleResolution": "bundler",
+
+    /*
+      JSON import 허용.
+    */
+    "resolveJsonModule": true,
+
+    /*
+      파일 단위 module 처리.
+    */
+    "isolatedModules": true,
+
+    /*
+      JSX 유지.
+    */
+    "jsx": "preserve",
+
+    /*
+      incremental build 사용.
+    */
+    "incremental": true,
+
+    /*
+      Next.js plugin.
+    */
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+
+    /*
+      alias 기준 위치.
+
+      현재 프로젝트 구조:
+
+      me/
+      ├── app/
+      ├── components/
+      ├── lib/
+
+      이므로 root 기준 사용.
+    */
+    "baseUrl": ".",
+
+    /*
+      @ alias 설정.
+
+      예:
+      @/components
+      →
+      components
+    */
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+
+  /*
+    TypeScript 검사 대상.
+  */
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+
+  /*
+    제외 대상.
+  */
+  "exclude": [
+    "node_modules"
+  ]
+}
