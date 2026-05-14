@@ -85,7 +85,7 @@
 
   terminal window 전체 외곽 프레임.
 */
-import GlassFrame from "@/components/layout/GlassFrame";
+import GlassFrame from "@/components/ui/GlassFrame";
 
 /*
   terminal top navbar.
