@@ -6,77 +6,107 @@
   ---------------------------------------------------------
 
   Interactive Terminal OS 의
-  실제 메인 터미널 화면 컴포넌트.
+  핵심 메인 window 컴포넌트.
+
+  ---------------------------------------------------------
+
+  역할:
+
+  - terminal 전체 구조 조립
+  - navbar / tabs / output / input 연결
+  - glass workstation shell 구성
+  - OS window 분위기 형성
 
   ---------------------------------------------------------
 
   이 컴포넌트는:
 
-  단순 "박스 UI" 가 아니다.
+  사실상 전체 시스템의
+  "메인 애플리케이션 창"
 
-  역할:
-
-  - terminal operating surface
-  - navigation shell
-  - command workspace
-  - interactive archive viewport
-
-  ---------------------------------------------------------
-
-  전체 구조:
-
-  TerminalWindow
-    ├── TerminalNavbar
-    ├── TerminalOutput
-    └── TerminalInput
-
-  ---------------------------------------------------------
-
-  현재 단계에서는:
-
-  - 레이아웃 구조
-  - 기본 shell
-  - visual hierarchy
-
-  까지만 만든다.
-
-  아직:
-  ❌ 실제 command logic
-  ❌ state system
-  ❌ parser
-  ❌ terminal history
-
-  는 구현하지 않는다.
+  역할이다.
 
   ---------------------------------------------------------
 
   중요한 철학:
 
-  이 UI 는:
+  ❌ 일반 웹 카드
+  ❌ dashboard panel
+  ❌ chat container
 
-  "개발자 장난감"
+  가 아니다.
 
-  처럼 보이면 안 된다.
+  ---------------------------------------------------------
 
   목표는:
 
-  조용한 미래형 workstation.
+  "future cinematic workstation"
+
+  느낌.
 
   ---------------------------------------------------------
 
   따라서:
 
-  - spacing 넓게
-  - contrast 절제
-  - subtle glow
-  - restrained border
+  - depth
+  - layered glass
+  - ambient light
+  - restrained contrast
+  - structured spacing
 
-  방향 유지.
+  중심으로 설계한다.
+
+  ---------------------------------------------------------
+
+  현재 단계에서는:
+
+  UI shell 조립만 담당.
+
+  이후:
+  - command state
+  - session state
+  - parser
+  - history
+  - filesystem
+  - routing
+
+  등을 여기서 관리하게 된다.
 */
 
-import TerminalNavbar from "./TerminalNavbar";
-import TerminalOutput from "./TerminalOutput";
-import TerminalInput from "./TerminalInput";
+
+/* =========================================================
+   COMPONENT IMPORTS
+   ---------------------------------------------------------
+   terminal 내부 구성요소 import.
+========================================================= */
+
+/*
+  glass outer shell.
+
+  terminal window 전체 외곽 프레임.
+*/
+import GlassFrame from "@/components/layout/GlassFrame";
+
+/*
+  terminal top navbar.
+*/
+import TerminalNavbar from "@/components/terminal/TerminalNavbar";
+
+/*
+  terminal session tabs.
+*/
+import TerminalTabs from "@/components/terminal/TerminalTabs";
+
+/*
+  terminal output area.
+*/
+import TerminalOutput from "@/components/terminal/TerminalOutput";
+
+/*
+  terminal command input.
+*/
+import TerminalInput from "@/components/terminal/TerminalInput";
+
 
 /*
   TerminalWindow 컴포넌트.
@@ -84,132 +114,31 @@ import TerminalInput from "./TerminalInput";
 export default function TerminalWindow() {
   return (
     /*
-      전체 terminal shell.
+      terminal window outer wrapper.
 
-      relative:
-      내부 absolute layer 기준점.
+      width 제한:
+      cinematic monitor 느낌 유지.
 
-      overflow-hidden:
-      내부 glow 가 radius 밖으로
-      튀어나가지 않도록 제한.
-
-      rounded:
-      glass frame 과 radius 통일.
+      mx-auto:
+      화면 중앙 정렬.
     */
     <div
       className="
         relative
 
-        overflow-hidden
+        mx-auto
 
-        rounded-[28px]
-
-        border border-white/[0.06]
-
-        bg-[rgba(5,8,14,0.72)]
-
-        shadow-[0_0_80px_rgba(0,0,0,0.45)]
+        w-full
+        max-w-[1500px]
       "
     >
       {/* =====================================================
-          INNER TOP HIGHLIGHT
+          AMBIENT OUTER GLOW
           -----------------------------------------------------
-          glass 내부 상단 reflection.
+          terminal 뒤쪽 공간감 생성.
 
-          목적:
-          flat 느낌 제거.
-      ====================================================== */}
-      <div
-        className="
-          pointer-events-none
-
-          absolute
-          inset-0
-
-          bg-gradient-to-b
-          from-white/[0.03]
-          to-transparent
-        "
-      />
-
-      {/* =====================================================
-          INNER DEPTH SHADOW
-          -----------------------------------------------------
-          terminal 내부 recessed 느낌 생성.
-      ====================================================== */}
-      <div
-        className="
-          pointer-events-none
-
-          absolute
-          inset-0
-
-          shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]
-        "
-      />
-
-      {/* =====================================================
-          TERMINAL CONTENT WRAPPER
-          -----------------------------------------------------
-          실제 터미널 콘텐츠 영역.
-
-          flex-col 구조:
-
-          navbar
-            ↓
-          output
-            ↓
-          input
-      ====================================================== */}
-      <div
-        className="
-          relative
-          z-10
-
-          flex
-          flex-col
-        "
-      >
-        {/* =================================================
-            TERMINAL NAVBAR
-            -------------------------------------------------
-            상단 navigation 영역.
-
-            포함 예정:
-            - menu
-            - clock
-            - status
-            - github
-        ================================================= */}
-        <TerminalNavbar />
-
-        {/* =================================================
-            TERMINAL OUTPUT
-            -------------------------------------------------
-            메인 출력 영역.
-
-            실제 terminal history 가
-            쌓이는 공간.
-        ================================================= */}
-        <TerminalOutput />
-
-        {/* =================================================
-            TERMINAL INPUT
-            -------------------------------------------------
-            하단 command input 영역.
-
-            사용자가 명령어 입력하는 부분.
-        ================================================= */}
-        <TerminalInput />
-      </div>
-
-      {/* =====================================================
-          BOTTOM AMBIENT GLOW
-          -----------------------------------------------------
-          하단부의 아주 약한 glow.
-
-          목적:
-          cinematic depth 강화.
+          blur 강하게,
+          opacity 약하게 사용.
       ====================================================== */}
       <div
         className="
@@ -217,24 +146,104 @@ export default function TerminalWindow() {
 
           absolute
 
-          bottom-[-120px]
           left-1/2
+          top-1/2
 
-          h-[240px]
-          w-[240px]
+          h-[700px]
+          w-[700px]
 
           -translate-x-1/2
+          -translate-y-1/2
 
           rounded-full
 
-          bg-cyan-400/[0.04]
+          bg-cyan-400/[0.05]
 
           blur-3xl
         "
       />
 
       {/* =====================================================
-          SCREEN EDGE DARKENING
+          SECONDARY SIDE GLOW
+          -----------------------------------------------------
+          화면 한쪽에 subtle light 추가.
+
+          완전히 대칭이면
+          UI 가 너무 기계적으로 보인다.
+      ====================================================== */}
+      <div
+        className="
+          pointer-events-none
+
+          absolute
+
+          right-[-120px]
+          top-[120px]
+
+          h-[320px]
+          w-[320px]
+
+          rounded-full
+
+          bg-violet-400/[0.04]
+
+          blur-3xl
+        "
+      />
+
+      {/* =====================================================
+          MAIN GLASS WINDOW
+          -----------------------------------------------------
+          실제 terminal application window.
+      ====================================================== */}
+      <GlassFrame>
+        {/* =================================================
+            WINDOW CONTENT
+            -------------------------------------------------
+            내부 vertical layout 구성.
+        ================================================= */}
+        <div
+          className="
+            relative
+
+            flex
+            flex-col
+          "
+        >
+          {/* =============================================
+              WINDOW TOP NAVBAR
+              ---------------------------------------------
+              window controls,
+              title,
+              system indicators.
+          ============================================== */}
+          <TerminalNavbar />
+
+          {/* =============================================
+              TERMINAL TABS
+              ---------------------------------------------
+              workspace / session tabs.
+          ============================================== */}
+          <TerminalTabs />
+
+          {/* =============================================
+              TERMINAL OUTPUT
+              ---------------------------------------------
+              main archive content area.
+          ============================================== */}
+          <TerminalOutput />
+
+          {/* =============================================
+              TERMINAL INPUT
+              ---------------------------------------------
+              command input area.
+          ============================================== */}
+          <TerminalInput />
+        </div>
+      </GlassFrame>
+
+      {/* =====================================================
+          SCREEN EDGE SHADOW
           -----------------------------------------------------
           CRT monitor edge 느낌 강화.
       ====================================================== */}
@@ -245,7 +254,27 @@ export default function TerminalWindow() {
           absolute
           inset-0
 
-          shadow-[inset_0_0_120px_rgba(0,0,0,0.28)]
+          rounded-[32px]
+
+          shadow-[inset_0_0_80px_rgba(0,0,0,0.35)]
+        "
+      />
+
+      {/* =====================================================
+          SUBTLE BORDER LIGHT
+          -----------------------------------------------------
+          glass edge reflection.
+      ====================================================== */}
+      <div
+        className="
+          pointer-events-none
+
+          absolute
+          inset-0
+
+          rounded-[32px]
+
+          border border-white/[0.03]
         "
       />
     </div>
