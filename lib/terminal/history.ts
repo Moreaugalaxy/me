@@ -59,6 +59,7 @@
    ---------------------------------------------------------
    terminal 공용 타입 import.
 ========================================================= */
+import { createElement } from "react";
 import type {
   ReactNode,
 } from "react";
@@ -189,77 +190,51 @@ export const DEFAULT_HISTORY:
     createHistoryItem(
       "system",
 
-      <div
-        className="
-          space-y-2
-
-          font-mono
-          text-sm
-
-          text-white/72
-        "
-      >
-        {/* =============================================
-            BOOT TITLE
-        ============================================== */}
-        <div
-          className="
-            text-cyan-300
-          "
-        >
-          INITIALIZING TERMINAL OS...
-        </div>
-
-        {/* =============================================
-            BOOT STEP
-        ============================================== */}
-        <div>
-          Loading cinematic interface modules...
-        </div>
-
-        {/* =============================================
-            BOOT STEP
-        ============================================== */}
-        <div>
-          Synchronizing archive registry...
-        </div>
-
-        {/* =============================================
-            SYSTEM ONLINE
-        ============================================== */}
-        <div
-          className="
-            text-lime-300
-          "
-        >
-          SYSTEM ONLINE
-        </div>
-
-        {/* =============================================
-            HELPER MESSAGE
-        ============================================== */}
-        <div
-          className="
-            pt-2
-
-            text-white/42
-          "
-        >
-          Type
-          {" "}
-
-          <span
-            className="
-              text-cyan-200
-            "
-          >
-            help
-          </span>
-
-          {" "}
-          to display available commands.
-        </div>
-      </div>
+      createElement(
+        "div",
+        {
+          className: "space-y-2 font-mono text-sm text-white/72",
+        },
+        createElement(
+          "div",
+          {
+            className: "text-cyan-300",
+          },
+          "INITIALIZING TERMINAL OS..."
+        ),
+        createElement(
+          "div",
+          null,
+          "Loading cinematic interface modules..."
+        ),
+        createElement(
+          "div",
+          null,
+          "Synchronizing archive registry..."
+        ),
+        createElement(
+          "div",
+          {
+            className: "text-lime-300",
+          },
+          "SYSTEM ONLINE"
+        ),
+        createElement(
+          "div",
+          {
+            className: "pt-2 text-white/42",
+          },
+          "Type ",
+          createElement(
+            "span",
+            {
+              className: "text-cyan-200",
+            },
+            "help"
+          ),
+          " to display available commands."
+        )
+      )
     ),
   ];
 

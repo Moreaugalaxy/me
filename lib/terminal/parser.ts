@@ -104,6 +104,7 @@ import ProjectsCommand from
 import HelpCommand from
   "@/components/terminal/commands/HelpCommand";
 
+import { createElement } from "react";
 
 /* =========================================================
    TERMINAL SYSTEM IMPORTS
@@ -183,31 +184,24 @@ export function parseCommand(
 
       found: false,
 
-      component: (
-        <div
-          className="
-            font-mono
-            text-sm
-
-            text-red-300
-          "
-        >
-          {/* error title */}
-          <span>
-            Command not found:
-          </span>
-
-          {" "}
-
-          {/* command name */}
-          <span
-            className="
-              text-white/80
-            "
-          >
-            {command}
-          </span>
-        </div>
+      component: createElement(
+        "div",
+        {
+          className: "font-mono text-sm text-red-300",
+        },
+        createElement(
+          "span",
+          null,
+          "Command not found:"
+        ),
+        " ",
+        createElement(
+          "span",
+          {
+            className: "text-white/80",
+          },
+          command
+        )
       ),
     };
   }
@@ -242,9 +236,7 @@ export function parseCommand(
     return {
       command,
 
-      component: (
-        <AboutCommand />
-      ),
+      component: createElement(AboutCommand, null),
 
       found: true,
     };
@@ -260,9 +252,7 @@ export function parseCommand(
     return {
       command,
 
-      component: (
-        <SkillsCommand />
-      ),
+      component: createElement(SkillsCommand, null),
 
       found: true,
     };
@@ -278,9 +268,7 @@ export function parseCommand(
     return {
       command,
 
-      component: (
-        <ProjectsCommand />
-      ),
+      component: createElement(ProjectsCommand, null),
 
       found: true,
     };
@@ -296,9 +284,7 @@ export function parseCommand(
     return {
       command,
 
-      component: (
-        <HelpCommand />
-      ),
+      component: createElement(HelpCommand, null),
 
       found: true,
     };
@@ -314,17 +300,12 @@ export function parseCommand(
 
     found: false,
 
-    component: (
-      <div
-        className="
-          font-mono
-          text-sm
-
-          text-amber-300
-        "
-      >
-        Unknown parser state.
-      </div>
+    component: createElement(
+      "div",
+      {
+        className: "font-mono text-sm text-amber-300",
+      },
+      "Unknown parser state."
     ),
   };
 }
