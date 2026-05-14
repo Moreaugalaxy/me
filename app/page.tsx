@@ -64,7 +64,7 @@
 
   반드시 필요한 파일:
 
-  public/images/bg-terminal.jpg
+  public/images/terminal-bg.jpg
 
   ---------------------------------------------------------
 
@@ -123,6 +123,8 @@ import TerminalWindow from "@/components/terminal/TerminalWindow";
   메인 페이지 컴포넌트.
 */
 export default function HomePage() {
+  const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
   return (
     /*
       페이지 전체 wrapper.
@@ -150,7 +152,7 @@ export default function HomePage() {
           메인 cinematic background.
 
           반드시:
-          public/images/bg-terminal.jpg
+          public/images/terminal-bg.jpg
           파일 필요.
       ====================================================== */}
       <div
@@ -158,11 +160,13 @@ export default function HomePage() {
           absolute
           inset-0
 
-          bg-[url('/images/bg-terminal.jpg')]
           bg-cover
           bg-center
           bg-no-repeat
         "
+        style={{
+          backgroundImage: `url("${assetBasePath}/images/terminal-bg.jpg")`,
+        }}
       />
 
       {/* =====================================================

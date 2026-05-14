@@ -111,12 +111,12 @@ export default function CRTOverlay() {
             noise texture 이미지.
 
             추천 파일:
-            /public/images/overlays/noise.png
+            /public/textures/noise.png
 
             작은 반복 texture 사용 추천.
           */
           backgroundImage:
-            "url('/images/overlays/noise.png')",
+            "var(--noise-image)",
 
           /*
             texture 반복.

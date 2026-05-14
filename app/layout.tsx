@@ -105,6 +105,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
   return (
     /*
       lang="ko"
@@ -129,6 +131,9 @@ export default function RootLayout({
           antialiased
           theme-background
         "
+        style={{
+          "--noise-image": `url("${assetBasePath}/textures/noise.png")`,
+        } as any}
       >
         {/* 
           실제 페이지 콘텐츠 영역.
