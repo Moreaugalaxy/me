@@ -123,8 +123,6 @@ import TerminalWindow from "@/components/terminal/TerminalWindow";
   메인 페이지 컴포넌트.
 */
 export default function HomePage() {
-  const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
   return (
     /*
       페이지 전체 wrapper.
@@ -160,13 +158,11 @@ export default function HomePage() {
           absolute
           inset-0
 
+          bg-[url('/images/terminal-bg.jpg')]
           bg-cover
           bg-center
           bg-no-repeat
         "
-        style={{
-          backgroundImage: `url("${assetBasePath}/images/terminal-bg.jpg")`,
-        }}
       />
 
       {/* =====================================================

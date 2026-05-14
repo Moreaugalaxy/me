@@ -101,9 +101,6 @@
    "존재감"이 아니라
    "질감" 수준이어야 한다.
 ========================================================= */
-:root {
-  --noise-image: url("/textures/noise.png");
-}
 
 .theme-noise {
   position: absolute;
